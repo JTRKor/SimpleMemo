@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--시작시 에디트 택스트가 포커스를 얻으며 키보드가 열리는 걸 막는 방법-->
+<!-- android:descendantFocusability="beforeDescendants"
+     android:focusableInTouchMode="true"-->
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity"
+    android:background="@drawable/paper"
+    android:descendantFocusability="beforeDescendants"
+    android:focusableInTouchMode="true">
+    <!--상단 메뉴 릴레이티브 레이아웃 -->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/main_layout_toplayout">
+        <!--종료 버튼 부분 -->
+        <!--위치를 좌측으로 지정 android:layout_alignParentLeft="true"-->
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="종료"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/mainColor"
+            android:layout_alignParentLeft="true"
+            android:id="@+id/main_tv_finish"/>
+        <!--어플 이름(타이틀) -->
+        <!--가운대로 위치 지정 android:layout_centerInParent="true"-->
+        <TextView
+            android:layout_width="100dp"
+            android:layout_height="match_parent"
+            android:text="Simple Memo"
+            android:gravity="center"
+            android:textSize="15dp"
+            android:textStyle="bold"
+            android:layout_centerInParent="true"/>
+        <!--삭제 버튼 부분 -->
+        <!--우측으로 위치 지정 android:layout_alignParentRight="true" -->
+        <TextView
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:text="삭제"
+            android:gravity="center"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:textColor="@color/mainColor"
+            android:layout_alignParentRight="true"
+            android:id="@+id/main_tv_del"/>
+        <!--상단 메뉴 릴레이티브 레이아웃 종료 -->
+    </RelativeLayout>
+    <!--상단 메뉴와 검색 사이의 줄라인 표시 -->
+    <!--상단 메뉴 밑에 위치 지정 android:layout_below="@+id/main_layout_toplayout"-->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:src="@drawable/shape_line"
+        android:layout_below="@+id/main_layout_toplayout"
+        android:id="@+id/main_topline"/>
+    <!--리스트뷰와 검색창을 넣을 스크롤뷰 레이아웃 생성 -->
+    <!--상단 라인과 하단 라인 사이에 위치 지정 -->
+    <!--밑에 위치 지정 android:layout_below="@+id/main_topline" -->
+    <!--위에 위치 지정 android:layout_above="@+id/main_bottomline" -->
+    <!--스크롤 뷰 안에 리스트뷰를 전부 넣고 싶을 경우 fillViewport="true"-->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@+id/main_topline"
+        android:layout_above="@+id/main_bottomline"
+        android:fillViewport="true"
+        android:id="@+id/main_scrollview">
+        <!--스크롤 뷰를 사용하기 위해서는 리니어레이아웃을 필수로 사용해야한다 -->
+        <!--리스트뷰의 내용이 길어질 경우 스크롤뷰의 최 하단으로 내려간 상태에서 시작을 막을 시-->
+        <!--android:descendantFocusability="blocksDescendants"-->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <!--검색창을 넣기 위한 리니어 레이아웃 생성 -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:id="@+id/main_layout_search">
+                <!--검색어 작성을 위한 에디트 택스트를 생성 -->
+                <!--에디트 텍스트에 이미지 넣기 drawableLeft="@drawable/ic_search_gray"-->
+                <EditText
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/shape_et_back"
+                    android:drawableLeft="@drawable/ic_search_gray"
+                    android:hint="검색"
+                    android:id="@+id/main_et_search"
+                    android:paddingLeft="20dp"/>
+            </LinearLayout>
+            <!--메모리스트를 위한 리스트뷰 생성 -->
+            <!--구분선 제거 divider="#00000000"-->
+            <!--구분선을 리스트뷰에서 따로 그렸음 -->
+            <!--간격 띄우기 dividerHeight="4dp" 했더니 하단 줄 일부가 안보이는 현상-->
+            <ListView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/main_lv"
+                android:divider="#00000000"
+                android:dividerHeight="3dp">
+            </ListView>
+            <!--검색과 리스트뷰의 리니어아웃 종료 -->
+        </LinearLayout>
+        <!--검색과 리스트뷰의 스크롤뷰 종료 -->
+    </ScrollView>
+    <!--리스트뷰와 하단 정렬칸의 구분선 이미지뷰 -->
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="2dp"
+        android:src="@drawable/shape_line"
+        android:layout_above="@+id/main_layout_bottomlayout"
+        android:id="@+id/main_bottomline"/>
+    <!--하단 메뉴 정렬 및 전체 갯수와 작성버튼을 위한 릴레이티브 생성 -->
+    <!--최하단 위치 지정 android:layout_alignParentBottom="true"-->
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:id="@+id/main_layout_bottomlayout"
+        android:layout_alignParentBottom="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/main_layout_bottomlayout_nor">
+            <!--정렬을 위한 표시 -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:text="정렬 : "
+                android:gravity="center"
+                android:layout_alignParentLeft="true"
+                android:textSize="10dp"
+                android:id="@+id/main_tv_sort"/>
+            <!--정렬을 정할 수 있는 선택형 박스인 스피너 생성 -->
+            <Spinner
+                android:id="@+id/main_sp_sort"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:layout_toRightOf="@+id/main_tv_sort"/>
+            <!--몇 개의 메모가 있는지 표시하는 항목 -->
+            <!--가운데 위치 지정 android:layout_centerInParent="true"-->
+            <TextView
+                android:layout_width="100dp"
+                android:layout_height="match_parent"
+                android:text="0개의 메모"
+                android:gravity="center"
+                android:layout_centerInParent="true"
+                android:id="@+id/main_tv_totalcount"/>
+            <!--메모작성 그림 -->
+            <LinearLayout
+                android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:layout_alignParentRight="true">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_margin="5dp"
+                    android:src="@drawable/ic_write_yel"
+                    android:id="@+id/main_iv_write"/>
+            </LinearLayout>
+        </RelativeLayout>
+    </RelativeLayout>
+</RelativeLayout>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="sort">
+        <item>일반</item>
+        <item>날짜오름차순</item>
+        <item>날짜내림차순</item>
+    </string-array>
+
+</resources>

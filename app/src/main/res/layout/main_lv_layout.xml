@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:orientation="horizontal"
+    android:descendantFocusability="blocksDescendants">
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:id="@+id/main_lv_check_layout">
+        <CheckBox
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:background="@drawable/custom_check_box"
+            android:button="@null"
+            android:id="@+id/main_lv_check"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="20dp"
+        android:layout_height="match_parent">
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="49dp"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:text="텍스트를 입력해주세요."
+                android:layout_marginLeft="5dp"
+                android:gravity="center_vertical"
+                android:textSize="18dp"
+                android:textStyle="bold"
+                android:textColor="@color/mainTextColor"
+                android:id="@+id/main_lv_content"/>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:layout_marginLeft="10dp"
+                android:text="0000.00.00"
+                android:gravity="center_vertical"
+                android:textSize="15dp"
+                android:textColor="@color/mainSubTextColor"
+                android:id="@+id/main_lv_date"/>
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:src="@drawable/shape_line"/>
+    </LinearLayout>
+
+
+</LinearLayout>
